@@ -238,13 +238,13 @@ namespace DelaunayGenericTriangulation
             if (e.Button == MouseButtons.Left)
             {
                 // create the mesh
-                pslgData.SelectAndSetMesh(e.X - StaticClass.BoundingMidPt.X, e.Y - StaticClass.BoundingMidPt.Y, true, float.Parse(triangleSize.Text));
+                pslgData.SelectAndSetMesh(e.X - StaticClass.BoundingMidPt.X, e.Y - StaticClass.BoundingMidPt.Y, true, float.Parse(triangleSize.Text), RefineCheckBox.Checked);
             }
 
             if (e.Button == MouseButtons.Right)
             {
                 // delete the mesh
-                pslgData.SelectAndSetMesh(e.X - StaticClass.BoundingMidPt.X, e.Y - StaticClass.BoundingMidPt.Y, false, float.Parse(triangleSize.Text));
+                pslgData.SelectAndSetMesh(e.X - StaticClass.BoundingMidPt.X, e.Y - StaticClass.BoundingMidPt.Y, false, float.Parse(triangleSize.Text), false);
             }
 
             mtPic.Refresh();
@@ -281,6 +281,6 @@ namespace DelaunayGenericTriangulation
         private void label3_Click(object sender, EventArgs e)
         {
 
-        }
+        } 
     }
 }

@@ -7,7 +7,7 @@ namespace DelaunayGenericTriangulation
 {
     public class PSLGDataStructure
     {       
-        public void SelectAndSetMesh(double x, double y, bool is_create, float h)
+        public void SelectAndSetMesh(double x, double y, bool is_create, float h, bool refine)
         {
             // this is a call to set or delete the mesh
             int surf_index = -1; //variable to store the index
@@ -35,7 +35,7 @@ namespace DelaunayGenericTriangulation
 
             if (is_create == true) // create the mesh
             {
-                DelaunayGenericAlgorithm.create_constrained_mesh(surf_index, inner_surf_index, ref allSurfaces, h);
+                DelaunayGenericAlgorithm.create_constrained_mesh(surf_index, inner_surf_index, ref allSurfaces, h, refine);
             }
             else // delete the mesh
             {
@@ -475,6 +475,37 @@ namespace DelaunayGenericTriangulation
                 }
             }
 
+            public double InnerRadius
+            {
+                get
+                {
+                    return Utils.CalculateInnerRadius(get_p1.X, get_p1.Y, get_p2.X, get_p2.Y, get_p3.X, get_p3.Y);
+                }
+            }
+           
+            public double OuterRadius
+            {
+                get
+                {
+                    return Utils.CalculateOuterRadius(get_p1.X, get_p1.Y, get_p2.X, get_p2.Y, get_p3.X, get_p3.Y);
+                }
+            }
+
+            public double AspectRatio
+            {
+                get
+                {
+                    return Utils.AspectRatio(InnerRadius,OuterRadius);
+                }
+            }
+
+            public (double, double, double) Angles
+            {
+                get
+                {
+                    return Utils.GetTriangleAngles(get_p1, get_p2, get_p3);
+                }
+            }
 
             public triangle2d(int i_face_id, point2d i_p1, point2d i_p2, point2d i_p3)
             {

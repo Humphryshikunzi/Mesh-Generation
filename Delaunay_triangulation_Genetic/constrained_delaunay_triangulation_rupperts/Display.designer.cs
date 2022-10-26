@@ -38,6 +38,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.MapFileName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.RefineCheckBox = new System.Windows.Forms.CheckBox();
             this.MainPic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mtPic)).BeginInit();
             this.SuspendLayout();
@@ -49,6 +50,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MainPic.BackColor = System.Drawing.Color.White;
             this.MainPic.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.MainPic.Controls.Add(this.RefineCheckBox);
             this.MainPic.Controls.Add(this.triangleSize);
             this.MainPic.Controls.Add(this.label3);
             this.MainPic.Controls.Add(this.mtPic);
@@ -151,6 +153,16 @@
             this.label2.Text = "Enter File Name";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
+            // RefineCheckBox
+            // 
+            this.RefineCheckBox.AutoSize = true;
+            this.RefineCheckBox.Location = new System.Drawing.Point(941, 22);
+            this.RefineCheckBox.Name = "RefineCheckBox";
+            this.RefineCheckBox.Size = new System.Drawing.Size(104, 20);
+            this.RefineCheckBox.TabIndex = 3;
+            this.RefineCheckBox.Text = "Refine Mesh";
+            this.RefineCheckBox.UseVisualStyleBackColor = true;
+            // 
             // Display
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -188,6 +200,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox triangleSize;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.CheckBox RefineCheckBox;
     }
 }
 

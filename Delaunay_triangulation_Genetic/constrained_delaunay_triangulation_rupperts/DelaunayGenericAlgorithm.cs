@@ -30,7 +30,7 @@ namespace DelaunayGenericTriangulation
         public static double eps = 0.000001; // 10^-6
         private static mesh_store main_mesh;
 
-        public static void create_constrained_mesh(int the_surface_index, List<int> inner_surface_indices, ref List<PSLGDataStructure.SurfaceStore> the_surface_data, float h)
+        public static void create_constrained_mesh(int the_surface_index, List<int> inner_surface_indices, ref List<PSLGDataStructure.SurfaceStore> the_surface_data, float h, bool refine)
         {
             // step : 1 Create outter and inner edges of the surface
             List<PSLGDataStructure.edge2d> outter_edges = new List<PSLGDataStructure.edge2d>(); // variable to store outter edges
@@ -90,59 +90,63 @@ namespace DelaunayGenericTriangulation
             main_mesh.Add_multiple_points(all_pts);
             main_mesh.Finalize_mesh(the_surface_data[the_surface_index]);
 
-            // step : 5 Well sized triangle condition
-            // parameter 1 => B is the parameter from Chew's first algorithm B = 1, Ruppert's B = Sqrt(2), Chews second algorithm B = Sqrt(5)/2
-            double B_var = Math.Sqrt(2);
-
-            // parameter 2 => h is the desired side length of triangle in the triangulation (intiutive user input) 
-            double h_var = main_mesh.all_triangles.OrderBy(obj => obj.shortest_edge).ToArray()[0].shortest_edge * h; // change this !!!! to desired size
-
-            // step : 6 Find and queue the bad triangles
-            PSLGDataStructure.SurfaceStore current_surface = the_surface_data[the_surface_index];
-            mesh_store.triangle_store bad_triangle = main_mesh.all_triangles.Find(obj => triangle_angle_size_constraint(current_surface, obj, B_var, h_var) == true);
-
-            while (bad_triangle != null)
+            if (refine)
             {
-                // c_vertex stores the circum_center of bad triangles
-                PSLGDataStructure.point2d inner_surface_pt = new PSLGDataStructure.point2d(-1, bad_triangle.circum_center.x, bad_triangle.circum_center.y);
 
-                // step : 6A Refine the outter edges which are encroched by the failed triangles circum center
-                is_encroched = false;
-                encroched_segment_single_divide(ref outter_edges, ref inner_surface_pt, h_var, ref is_encroched, ref seed_outter_edge_exists);
+                // step : 5 Well sized triangle condition
+                // parameter 1 => B is the parameter from Chew's first algorithm B = 1, Ruppert's B = Sqrt(2), Chews second algorithm B = Sqrt(5)/2
+                double B_var = Math.Sqrt(2);
 
-                if (is_encroched == true)
+                // parameter 2 => h is the desired side length of triangle in the triangulation (intiutive user input) 
+                double h_var = main_mesh.all_triangles.OrderBy(obj => obj.shortest_edge).ToArray()[0].shortest_edge * h; // change this !!!! to desired size
+
+                // step : 6 Find and queue the bad triangles
+                PSLGDataStructure.SurfaceStore current_surface = the_surface_data[the_surface_index];
+                mesh_store.triangle_store bad_triangle = main_mesh.all_triangles.Find(obj => triangle_angle_size_constraint(current_surface, obj, B_var, h_var) == true);
+
+                while (bad_triangle != null)
                 {
-                    // incremental add point
-                    main_mesh.Add_single_point(inner_surface_pt);
-                    goto loopend;
-                }
+                    // c_vertex stores the circum_center of bad triangles
+                    PSLGDataStructure.point2d inner_surface_pt = new PSLGDataStructure.point2d(-1, bad_triangle.circum_center.x, bad_triangle.circum_center.y);
 
-                // step : 6B Refine all the inner edges which are encroched by the failed triangles circum center
-                for (int j = 0; j < inner_surface_indices.Count; j++)
-                {
-                    // cycle through all the inner surfaces
+                    // step : 6A Refine the outter edges which are encroched by the failed triangles circum center
                     is_encroched = false;
-                    encroched_segment_single_divide(ref inner_edges[j], ref inner_surface_pt, h_var, ref is_encroched, ref seed_inner_edge_exists[j]);
-                    
+                    encroched_segment_single_divide(ref outter_edges, ref inner_surface_pt, h_var, ref is_encroched, ref seed_outter_edge_exists);
+
                     if (is_encroched == true)
                     {
                         // incremental add point
                         main_mesh.Add_single_point(inner_surface_pt);
                         goto loopend;
                     }
+
+                    // step : 6B Refine all the inner edges which are encroched by the failed triangles circum center
+                    for (int j = 0; j < inner_surface_indices.Count; j++)
+                    {
+                        // cycle through all the inner surfaces
+                        is_encroched = false;
+                        encroched_segment_single_divide(ref inner_edges[j], ref inner_surface_pt, h_var, ref is_encroched, ref seed_inner_edge_exists[j]);
+
+                        if (is_encroched == true)
+                        {
+                            // incremental add point
+                            main_mesh.Add_single_point(inner_surface_pt);
+                            goto loopend;
+                        }
+                    }
+
+                    // Refinement operation 2 => split a triangle by adding a vertex at its circum center
+                    // step : 6C Refine all the inner surface with the failed triangles circum center
+                    main_mesh.Add_single_point(inner_surface_pt);
+
+                loopend:;
+                    // Find the new bad triangle
+                    bad_triangle = main_mesh.all_triangles.Find(obj => triangle_angle_size_constraint(current_surface, obj, B_var, h_var) == true);
                 }
 
-                // Refinement operation 2 => split a triangle by adding a vertex at its circum center
-                // step : 6C Refine all the inner surface with the failed triangles circum center
-                main_mesh.Add_single_point(inner_surface_pt);
-
-            loopend:;
-                // Find the new bad triangle
-                bad_triangle = main_mesh.all_triangles.Find(obj => triangle_angle_size_constraint(current_surface, obj, B_var, h_var) == true);
+                // Finalize the mesh (to remove the faces out of bounds)
+                main_mesh.Finalize_mesh(the_surface_data[the_surface_index]);
             }
-
-            // Finalize the mesh (to remove the faces out of bounds)
-            main_mesh.Finalize_mesh(the_surface_data[the_surface_index]);
 
             // step : 7 Add the mesh to the surface
             the_surface_data[the_surface_index].my_mesh = new PSLGDataStructure.mesh2d();

@@ -68,6 +68,7 @@
     <Compile Include="Display.designer.cs">
       <DependentUpon>Display.cs</DependentUpon>
     </Compile>
+    <Compile Include="Docs.cs" />
     <Compile Include="GenerateMap.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
