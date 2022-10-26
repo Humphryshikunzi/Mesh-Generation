@@ -97,13 +97,11 @@ namespace DelaunayGenericTriangulation
                 all_points.ForEach(obj => obj.paint_me(ref gr1, ref temp_node_pen)); // Paint the nodes
 
                 // get triangle areas
-                //all_triangles.ForEach(obj => triangleAreas.Add(Utils.CalculateArea(obj.get_p1.X, obj.get_p1.Y, obj.get_p2.X, obj.get_p2.Y, obj.get_p3.X, obj.get_p3.Y)));
                 all_triangles.ForEach(obj => triangleAreas.Add(obj.Area));
                 q1 = Utils.GetLowerQuartileArea(triangleAreas);
                 
                 Pen temp_tri_pen = new Pen(Color.Black, 1); 
-                all_triangles.ForEach(obj => obj.paint_me(ref gr1, ref temp_tri_pen, obj.Area, q1)); // Paint the faces
-              
+                all_triangles.ForEach(obj => obj.paint_me(ref gr1, ref temp_tri_pen, obj.Area, q1)); // Paint the faces              
             }
         }
 
@@ -548,8 +546,11 @@ namespace DelaunayGenericTriangulation
 
             public void paint_me(ref Graphics gr0, ref Pen face_pen, double triangleArea, double q1Area) // this function is used to paint the points
             {
+               
                 if (Display.StaticClass.isPaintMesh == true)
                 {
+                    if (!Utils.RefineChecked) q1Area = 0;
+                    
                     if (triangleArea <= q1Area)
                     {
                         face_pen.Color = Color.Green;

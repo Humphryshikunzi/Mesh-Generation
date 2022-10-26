@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using static DelaunayGenericTriangulation.DelaunayGenericAlgorithm.mesh_store;
 
 namespace constrained_delaunay_triangulation
 {
@@ -170,13 +171,48 @@ namespace constrained_delaunay_triangulation
             gamma = (float)(gamma * 180 / Math.PI);
 
             return (alpha,betta,gamma);             
-        }      
+        }
+        public static (double Alpha, double Betta, double Gamma) GetTriangleAngles(point_store A, point_store B, point_store C)
+        {
+            // Square of lengths be a2, b2, c2
+            double a2 = LengthSquare(B, C);
+            double b2 = LengthSquare(A, C);
+            double c2 = LengthSquare(A, B);
+
+            // length of sides be a, b, c
+            float a = (float)Math.Sqrt(a2);
+            float b = (float)Math.Sqrt(b2);
+            float c = (float)Math.Sqrt(c2);
+
+            // From Cosine law
+            float alpha = (float)Math.Acos((b2 + c2 - a2) /
+                                               (2 * b * c));
+            float betta = (float)Math.Acos((a2 + c2 - b2) /
+                                               (2 * a * c));
+            float gamma = (float)Math.Acos((a2 + b2 - c2) /
+                                               (2 * a * b));
+
+            // Converting to degree
+            alpha = (float)(alpha * 180 / Math.PI);
+            betta = (float)(betta * 180 / Math.PI);
+            gamma = (float)(gamma * 180 / Math.PI);
+
+            return (alpha, betta, gamma);
+        }
         static float LengthSquare(PointF p1, PointF p2)
         {
             // returns square of distance b/w two points
             float xDiff = p1.X - p2.X;
             float yDiff = p1.Y - p2.Y;
            
+            return xDiff * xDiff + yDiff * yDiff;
+        }
+        static double LengthSquare(point_store p1, point_store p2)
+        {
+            // returns square of distance b/w two points
+            double xDiff = p1.x - p2.x;
+            double yDiff = p1.y - p2.y;
+
             return xDiff * xDiff + yDiff * yDiff;
         }
         public class Point
@@ -188,5 +224,14 @@ namespace constrained_delaunay_triangulation
                 this.y = y;
             }
         }
+ 
+        private static bool refineChecked;
+
+        public static bool  RefineChecked
+        {
+            get { return refineChecked; }
+            set { refineChecked = value; }
+        }
+
     }
 }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.MainPic = new System.Windows.Forms.Panel();
+            this.RefineCheckBox = new System.Windows.Forms.CheckBox();
             this.triangleSize = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.mtPic = new System.Windows.Forms.PictureBox();
@@ -38,7 +39,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.MapFileName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.RefineCheckBox = new System.Windows.Forms.CheckBox();
             this.MainPic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mtPic)).BeginInit();
             this.SuspendLayout();
@@ -62,6 +62,17 @@
             this.MainPic.Paint += new System.Windows.Forms.PaintEventHandler(this.MainPic_Paint);
             this.MainPic.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MainPic_MouseClick);
             this.MainPic.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainPic_MouseMove);
+            // 
+            // RefineCheckBox
+            // 
+            this.RefineCheckBox.AutoSize = true;
+            this.RefineCheckBox.Location = new System.Drawing.Point(941, 22);
+            this.RefineCheckBox.Name = "RefineCheckBox";
+            this.RefineCheckBox.Size = new System.Drawing.Size(104, 20);
+            this.RefineCheckBox.TabIndex = 3;
+            this.RefineCheckBox.Text = "Refine Mesh";
+            this.RefineCheckBox.UseVisualStyleBackColor = true;
+            this.RefineCheckBox.CheckedChanged += new System.EventHandler(this.RefineCheckBox_CheckedChanged);
             // 
             // triangleSize
             // 
@@ -152,16 +163,6 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "Enter File Name";
             this.label2.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // RefineCheckBox
-            // 
-            this.RefineCheckBox.AutoSize = true;
-            this.RefineCheckBox.Location = new System.Drawing.Point(941, 22);
-            this.RefineCheckBox.Name = "RefineCheckBox";
-            this.RefineCheckBox.Size = new System.Drawing.Size(104, 20);
-            this.RefineCheckBox.TabIndex = 3;
-            this.RefineCheckBox.Text = "Refine Mesh";
-            this.RefineCheckBox.UseVisualStyleBackColor = true;
             // 
             // Display
             // 

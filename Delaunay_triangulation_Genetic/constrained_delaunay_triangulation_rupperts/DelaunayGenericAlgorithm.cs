@@ -1,4 +1,5 @@
-﻿using System;
+﻿using constrained_delaunay_triangulation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -1456,6 +1457,47 @@ namespace DelaunayGenericTriangulation
                 {
                     get { return this._shortest_edge; }
                 }
+
+                public double Area
+                {
+                    get
+                    {
+                        return Utils.CalculateArea(pt1.x, pt1.y, pt2.x, pt2.y, pt3.x, pt3.y);
+                    }
+                }
+
+                public double InnerRadius
+                {
+                    get
+                    {
+                        return Utils.CalculateInnerRadius(pt1.x, pt1.y, pt2.x, pt2.y, pt3.x, pt3.y);
+                    }
+                }
+
+                public double OuterRadius
+                {
+                    get
+                    {
+                        return Utils.CalculateOuterRadius(pt1.x, pt1.y, pt2.x, pt2.y, pt3.x, pt3.y);
+                    }
+                }
+
+                public double AspectRatio
+                {
+                    get
+                    {
+                        return Utils.AspectRatio(InnerRadius, OuterRadius);
+                    }
+                }
+
+                public (double, double, double) Angles
+                {
+                    get
+                    {
+                        return Utils.GetTriangleAngles(pt1, pt2, pt3);
+                    }
+                }
+
 
                 public void add_triangle(int i_tri_id, point_store i_p1, point_store i_p2, point_store i_p3, edge_store i_e1, edge_store i_e2, edge_store i_e3)
                 {

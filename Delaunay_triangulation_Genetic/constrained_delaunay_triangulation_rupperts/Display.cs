@@ -1,4 +1,5 @@
-﻿using System;
+﻿using constrained_delaunay_triangulation;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -281,6 +282,12 @@ namespace DelaunayGenericTriangulation
         private void label3_Click(object sender, EventArgs e)
         {
 
-        } 
+        }
+
+        private void RefineCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (RefineCheckBox.Checked) Utils.RefineChecked = true; 
+            else Utils.RefineChecked=false; 
+        }
     }
 }
