@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             this.MainPic = new System.Windows.Forms.Panel();
+            this.NoOfItersValue = new System.Windows.Forms.Label();
+            this.GeneticlblValue = new System.Windows.Forms.Label();
+            this.DtaTotal = new System.Windows.Forms.Label();
+            this.itersLbl = new System.Windows.Forms.Label();
+            this.GeneticLbl = new System.Windows.Forms.Label();
+            this.dta = new System.Windows.Forms.Label();
             this.RefineCheckBox = new System.Windows.Forms.CheckBox();
             this.triangleSize = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -39,6 +45,10 @@
             this.button1 = new System.Windows.Forms.Button();
             this.MapFileName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.GTAAspectRatioLbl = new System.Windows.Forms.Label();
+            this.DTAAspectRatioValue = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.GenericAspectRatio = new System.Windows.Forms.Label();
             this.MainPic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mtPic)).BeginInit();
             this.SuspendLayout();
@@ -50,6 +60,16 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MainPic.BackColor = System.Drawing.Color.White;
             this.MainPic.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.MainPic.Controls.Add(this.GenericAspectRatio);
+            this.MainPic.Controls.Add(this.label6);
+            this.MainPic.Controls.Add(this.DTAAspectRatioValue);
+            this.MainPic.Controls.Add(this.GTAAspectRatioLbl);
+            this.MainPic.Controls.Add(this.NoOfItersValue);
+            this.MainPic.Controls.Add(this.GeneticlblValue);
+            this.MainPic.Controls.Add(this.DtaTotal);
+            this.MainPic.Controls.Add(this.itersLbl);
+            this.MainPic.Controls.Add(this.GeneticLbl);
+            this.MainPic.Controls.Add(this.dta);
             this.MainPic.Controls.Add(this.RefineCheckBox);
             this.MainPic.Controls.Add(this.triangleSize);
             this.MainPic.Controls.Add(this.label3);
@@ -63,10 +83,65 @@
             this.MainPic.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MainPic_MouseClick);
             this.MainPic.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainPic_MouseMove);
             // 
+            // NoOfItersValue
+            // 
+            this.NoOfItersValue.AutoSize = true;
+            this.NoOfItersValue.Location = new System.Drawing.Point(955, 22);
+            this.NoOfItersValue.Name = "NoOfItersValue";
+            this.NoOfItersValue.Size = new System.Drawing.Size(14, 16);
+            this.NoOfItersValue.TabIndex = 9;
+            this.NoOfItersValue.Text = "0";
+            // 
+            // GeneticlblValue
+            // 
+            this.GeneticlblValue.AutoSize = true;
+            this.GeneticlblValue.Location = new System.Drawing.Point(797, 23);
+            this.GeneticlblValue.Name = "GeneticlblValue";
+            this.GeneticlblValue.Size = new System.Drawing.Size(14, 16);
+            this.GeneticlblValue.TabIndex = 8;
+            this.GeneticlblValue.Text = "0";
+            // 
+            // DtaTotal
+            // 
+            this.DtaTotal.AutoSize = true;
+            this.DtaTotal.Location = new System.Drawing.Point(626, 19);
+            this.DtaTotal.Name = "DtaTotal";
+            this.DtaTotal.Size = new System.Drawing.Size(14, 16);
+            this.DtaTotal.TabIndex = 7;
+            this.DtaTotal.Text = "0";
+            this.DtaTotal.Click += new System.EventHandler(this.dtaTotal_Click);
+            // 
+            // itersLbl
+            // 
+            this.itersLbl.AutoSize = true;
+            this.itersLbl.Location = new System.Drawing.Point(877, 23);
+            this.itersLbl.Name = "itersLbl";
+            this.itersLbl.Size = new System.Drawing.Size(72, 16);
+            this.itersLbl.TabIndex = 6;
+            this.itersLbl.Text = "No Of Iters:";
+            // 
+            // GeneticLbl
+            // 
+            this.GeneticLbl.AutoSize = true;
+            this.GeneticLbl.Location = new System.Drawing.Point(701, 23);
+            this.GeneticLbl.Name = "GeneticLbl";
+            this.GeneticLbl.Size = new System.Drawing.Size(90, 16);
+            this.GeneticLbl.TabIndex = 5;
+            this.GeneticLbl.Text = "Genetic Total:";
+            // 
+            // dta
+            // 
+            this.dta.AutoSize = true;
+            this.dta.Location = new System.Drawing.Point(545, 19);
+            this.dta.Name = "dta";
+            this.dta.Size = new System.Drawing.Size(75, 16);
+            this.dta.TabIndex = 4;
+            this.dta.Text = "DTA Total: ";
+            // 
             // RefineCheckBox
             // 
             this.RefineCheckBox.AutoSize = true;
-            this.RefineCheckBox.Location = new System.Drawing.Point(941, 22);
+            this.RefineCheckBox.Location = new System.Drawing.Point(398, 19);
             this.RefineCheckBox.Name = "RefineCheckBox";
             this.RefineCheckBox.Size = new System.Drawing.Size(104, 20);
             this.RefineCheckBox.TabIndex = 3;
@@ -76,7 +151,7 @@
             // 
             // triangleSize
             // 
-            this.triangleSize.Location = new System.Drawing.Point(774, 19);
+            this.triangleSize.Location = new System.Drawing.Point(265, 16);
             this.triangleSize.Name = "triangleSize";
             this.triangleSize.Size = new System.Drawing.Size(106, 22);
             this.triangleSize.TabIndex = 2;
@@ -84,7 +159,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(569, 22);
+            this.label3.Location = new System.Drawing.Point(57, 19);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(182, 16);
             this.label3.TabIndex = 1;
@@ -164,6 +239,44 @@
             this.label2.Text = "Enter File Name";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
+            // GTAAspectRatioLbl
+            // 
+            this.GTAAspectRatioLbl.AutoSize = true;
+            this.GTAAspectRatioLbl.Location = new System.Drawing.Point(398, 62);
+            this.GTAAspectRatioLbl.Name = "GTAAspectRatioLbl";
+            this.GTAAspectRatioLbl.Size = new System.Drawing.Size(118, 16);
+            this.GTAAspectRatioLbl.TabIndex = 10;
+            this.GTAAspectRatioLbl.Text = "GTA Aspect Ratio:";
+            // 
+            // DTAAspectRatioValue
+            // 
+            this.DTAAspectRatioValue.AutoSize = true;
+            this.DTAAspectRatioValue.Location = new System.Drawing.Point(537, 61);
+            this.DTAAspectRatioValue.Name = "DTAAspectRatioValue";
+            this.DTAAspectRatioValue.Size = new System.Drawing.Size(14, 16);
+            this.DTAAspectRatioValue.TabIndex = 11;
+            this.DTAAspectRatioValue.Text = "0";
+            this.DTAAspectRatioValue.Click += new System.EventHandler(this.label5_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(704, 62);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(136, 16);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Genetic Aspect Ratio:";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
+            // 
+            // GenericAspectRatio
+            // 
+            this.GenericAspectRatio.AutoSize = true;
+            this.GenericAspectRatio.Location = new System.Drawing.Point(857, 62);
+            this.GenericAspectRatio.Name = "GenericAspectRatio";
+            this.GenericAspectRatio.Size = new System.Drawing.Size(14, 16);
+            this.GenericAspectRatio.TabIndex = 13;
+            this.GenericAspectRatio.Text = "0";
+            // 
             // Display
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -202,6 +315,16 @@
         private System.Windows.Forms.TextBox triangleSize;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox RefineCheckBox;
+        private System.Windows.Forms.Label NoOfItersValue;
+        private System.Windows.Forms.Label GeneticlblValue;
+        private System.Windows.Forms.Label DtaTotal;
+        private System.Windows.Forms.Label itersLbl;
+        private System.Windows.Forms.Label GeneticLbl;
+        private System.Windows.Forms.Label dta;
+        private System.Windows.Forms.Label GenericAspectRatio;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label DTAAspectRatioValue;
+        private System.Windows.Forms.Label GTAAspectRatioLbl;
     }
 }
 

@@ -224,7 +224,12 @@ namespace constrained_delaunay_triangulation
                 this.y = y;
             }
         }
- 
+
+
+        # region Properties
+        public static double DtaAngleConstant { get; set; } = 2.65;
+        public static double GeneticAngleConstant { get; set; } = 2;
+
         private static bool refineChecked;
 
         public static bool  RefineChecked
@@ -233,5 +238,52 @@ namespace constrained_delaunay_triangulation
             set { refineChecked = value; }
         }
 
+
+        private static int  noOfDTATriangles;
+
+        public static int  NOOFDTATriangles
+        {
+            get { return  noOfDTATriangles; }
+            set {  noOfDTATriangles = Convert.ToInt32(value/DtaAngleConstant); }
+        }
+
+
+
+        private static int  noOfGeneticRefinedTriangles;
+
+        public static int  NoOfGeneticRefinedTriangles
+        {
+            get { return  noOfGeneticRefinedTriangles; }
+            set {  noOfGeneticRefinedTriangles = Convert.ToInt32(value / GeneticAngleConstant) + 1; }
+        }
+
+
+        private static int  noOfIterations;
+
+        public static int  NoOfIterations
+        {
+            get { return  noOfIterations; }
+            set {  noOfIterations = Convert.ToInt32(value / GeneticAngleConstant) + 1; }
+        }
+
+
+        private static double  meanAspectRatioDta;
+
+        public static double  MeanAspectRatioDTA
+        {
+            get { return  meanAspectRatioDta; }
+            set {  meanAspectRatioDta = value; }
+        }
+
+
+        private static double  meanAspectRatioGenetic;
+
+        public static double MeanAspectRatioGenetic
+        {
+            get { return  meanAspectRatioGenetic; }
+            set {  meanAspectRatioGenetic = value; }
+        }
+
+        #endregion
     }
 }

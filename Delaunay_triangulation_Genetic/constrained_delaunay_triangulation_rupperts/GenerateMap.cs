@@ -685,7 +685,7 @@ namespace DelaunayGenericTriangulation
         public GenerateMap(float i_width, float i_height, string filePath)
         {
             cWidth = (int)(Math.Floor((double)i_width) / spacing);
-            cHeight = (int)(Math.Floor((double)i_height) / spacing);
+            cHeight = (int)(Math.Floor((double)i_height) / spacing);          
 
             map = new int[cWidth, cHeight]; // map grid
 
@@ -721,20 +721,34 @@ namespace DelaunayGenericTriangulation
             seed = DateTime.Now.ToString();
             Random pseudoRandom = new Random(seed.GetHashCode());
 
-            for (int x = 0; x < cWidth; x++)
+            using (StreamWriter writer = new StreamWriter("mapFile.csv"))
             {
-                for (int y = 0; y < cHeight; y++)
+                for (int x = 0; x < cWidth; x++)
                 {
-                    if (x == 0 || x == cWidth - 1 || y == 0 || y == cHeight - 1)
+                    for (int y = 0; y < cHeight; y++)
                     {
-                        // set the edges as solid
-                        map[x, y] = 1; //1 is solid 
+                        if (x == 0 || x == cWidth - 1 || y == 0 || y == cHeight - 1)
+                        {
+                            // set the edges as solid
+                            map[x, y] = 1; //1 is solid 
+
+
+                            // save this values
+                            writer.Write(map[x, y] + ",");
+                        }
+                        else
+                        {
+                            // set the other block as solid or void through random
+                            map[x, y] = (pseudoRandom.Next(0, 100) < randomFillPercent) ? 1 : 0;
+
+
+                            // save this values
+                            writer.Write(map[x, y] + ",");
+                        }                  
+                           
                     }
-                    else
-                    {
-                        // set the other block as solid or void through random
-                        map[x, y] = (pseudoRandom.Next(0, 100) < randomFillPercent) ? 1 : 0;
-                    }
+
+                    writer.WriteLine();
                 }
             }
         }

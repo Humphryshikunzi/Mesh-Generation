@@ -248,6 +248,22 @@ namespace DelaunayGenericTriangulation
                 pslgData.SelectAndSetMesh(e.X - StaticClass.BoundingMidPt.X, e.Y - StaticClass.BoundingMidPt.Y, false, float.Parse(triangleSize.Text), false);
             }
 
+
+            // if refined not, reset iters and genetic angles count to zero
+            if (!RefineCheckBox.Checked)
+            {
+                Utils.NoOfGeneticRefinedTriangles = 0;
+                Utils.NoOfIterations = 0;
+                Utils.MeanAspectRatioDTA = 0;
+                Utils.MeanAspectRatioGenetic = 0;
+            }
+
+            DtaTotal.Text = Convert.ToString(Utils.NOOFDTATriangles);
+            GeneticlblValue.Text = Convert.ToString(Utils.NoOfGeneticRefinedTriangles);
+            NoOfItersValue.Text = Convert.ToString(Utils.NoOfIterations);
+            DTAAspectRatioValue.Text = Convert.ToString(Utils.MeanAspectRatioDTA);
+            GenericAspectRatio.Text = Convert.ToString(Utils.MeanAspectRatioGenetic);
+
             mtPic.Refresh();
         }
 
@@ -288,6 +304,21 @@ namespace DelaunayGenericTriangulation
         {
             if (RefineCheckBox.Checked) Utils.RefineChecked = true; 
             else Utils.RefineChecked=false; 
+        }
+
+        private void dtaTotal_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

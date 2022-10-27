@@ -91,6 +91,13 @@ namespace DelaunayGenericTriangulation
             main_mesh.Add_multiple_points(all_pts);
             main_mesh.Finalize_mesh(the_surface_data[the_surface_index]);
 
+            // assign on DTA Values
+            Utils.NOOFDTATriangles = main_mesh.all_triangles.Count;
+
+            double aspectRatioSum = 0;
+            main_mesh.all_triangles.ForEach(tri => aspectRatioSum += tri.AspectRatio);
+            Utils.MeanAspectRatioDTA = aspectRatioSum / main_mesh.all_triangles.Count;
+
             if (refine)
             {
 
@@ -104,6 +111,9 @@ namespace DelaunayGenericTriangulation
                 // step : 6 Find and queue the bad triangles
                 PSLGDataStructure.SurfaceStore current_surface = the_surface_data[the_surface_index];
                 mesh_store.triangle_store bad_triangle = main_mesh.all_triangles.Find(obj => triangle_angle_size_constraint(current_surface, obj, B_var, h_var) == true);
+
+                // counter for iters
+                Utils.NoOfIterations = 0;
 
                 while (bad_triangle != null)
                 {
@@ -143,11 +153,21 @@ namespace DelaunayGenericTriangulation
                 loopend:;
                     // Find the new bad triangle
                     bad_triangle = main_mesh.all_triangles.Find(obj => triangle_angle_size_constraint(current_surface, obj, B_var, h_var) == true);
+                   
+                    Utils.NoOfIterations += 1;
                 }
 
                 // Finalize the mesh (to remove the faces out of bounds)
                 main_mesh.Finalize_mesh(the_surface_data[the_surface_index]);
+
+                // assign no of Genetic Angles
+                Utils.NoOfGeneticRefinedTriangles = main_mesh.all_triangles.Count;
+
+                aspectRatioSum = 0;
+                main_mesh.all_triangles.ForEach(tri => aspectRatioSum += tri.AspectRatio);
+                Utils.MeanAspectRatioGenetic = aspectRatioSum / main_mesh.all_triangles.Count;
             }
+
 
             // step : 7 Add the mesh to the surface
             the_surface_data[the_surface_index].my_mesh = new PSLGDataStructure.mesh2d();
