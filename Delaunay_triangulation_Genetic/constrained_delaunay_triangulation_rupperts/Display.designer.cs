@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.MainPic = new System.Windows.Forms.Panel();
+            this.GenericAspectRatio = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.DTAAspectRatioValue = new System.Windows.Forms.Label();
+            this.GTAAspectRatioLbl = new System.Windows.Forms.Label();
             this.NoOfItersValue = new System.Windows.Forms.Label();
             this.GeneticlblValue = new System.Windows.Forms.Label();
             this.DtaTotal = new System.Windows.Forms.Label();
@@ -45,10 +49,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.MapFileName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.GTAAspectRatioLbl = new System.Windows.Forms.Label();
-            this.DTAAspectRatioValue = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.GenericAspectRatio = new System.Windows.Forms.Label();
+            this.fullMesh = new System.Windows.Forms.Button();
             this.MainPic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mtPic)).BeginInit();
             this.SuspendLayout();
@@ -60,6 +61,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MainPic.BackColor = System.Drawing.Color.White;
             this.MainPic.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.MainPic.Controls.Add(this.fullMesh);
             this.MainPic.Controls.Add(this.GenericAspectRatio);
             this.MainPic.Controls.Add(this.label6);
             this.MainPic.Controls.Add(this.DTAAspectRatioValue);
@@ -82,6 +84,44 @@
             this.MainPic.Paint += new System.Windows.Forms.PaintEventHandler(this.MainPic_Paint);
             this.MainPic.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MainPic_MouseClick);
             this.MainPic.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainPic_MouseMove);
+            // 
+            // GenericAspectRatio
+            // 
+            this.GenericAspectRatio.AutoSize = true;
+            this.GenericAspectRatio.Location = new System.Drawing.Point(857, 62);
+            this.GenericAspectRatio.Name = "GenericAspectRatio";
+            this.GenericAspectRatio.Size = new System.Drawing.Size(14, 16);
+            this.GenericAspectRatio.TabIndex = 13;
+            this.GenericAspectRatio.Text = "0";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(704, 62);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(136, 16);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Genetic Aspect Ratio:";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
+            // 
+            // DTAAspectRatioValue
+            // 
+            this.DTAAspectRatioValue.AutoSize = true;
+            this.DTAAspectRatioValue.Location = new System.Drawing.Point(537, 61);
+            this.DTAAspectRatioValue.Name = "DTAAspectRatioValue";
+            this.DTAAspectRatioValue.Size = new System.Drawing.Size(14, 16);
+            this.DTAAspectRatioValue.TabIndex = 11;
+            this.DTAAspectRatioValue.Text = "0";
+            this.DTAAspectRatioValue.Click += new System.EventHandler(this.label5_Click);
+            // 
+            // GTAAspectRatioLbl
+            // 
+            this.GTAAspectRatioLbl.AutoSize = true;
+            this.GTAAspectRatioLbl.Location = new System.Drawing.Point(398, 62);
+            this.GTAAspectRatioLbl.Name = "GTAAspectRatioLbl";
+            this.GTAAspectRatioLbl.Size = new System.Drawing.Size(118, 16);
+            this.GTAAspectRatioLbl.TabIndex = 10;
+            this.GTAAspectRatioLbl.Text = "GTA Aspect Ratio:";
             // 
             // NoOfItersValue
             // 
@@ -239,43 +279,15 @@
             this.label2.Text = "Enter File Name";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
-            // GTAAspectRatioLbl
+            // fullMesh
             // 
-            this.GTAAspectRatioLbl.AutoSize = true;
-            this.GTAAspectRatioLbl.Location = new System.Drawing.Point(398, 62);
-            this.GTAAspectRatioLbl.Name = "GTAAspectRatioLbl";
-            this.GTAAspectRatioLbl.Size = new System.Drawing.Size(118, 16);
-            this.GTAAspectRatioLbl.TabIndex = 10;
-            this.GTAAspectRatioLbl.Text = "GTA Aspect Ratio:";
-            // 
-            // DTAAspectRatioValue
-            // 
-            this.DTAAspectRatioValue.AutoSize = true;
-            this.DTAAspectRatioValue.Location = new System.Drawing.Point(537, 61);
-            this.DTAAspectRatioValue.Name = "DTAAspectRatioValue";
-            this.DTAAspectRatioValue.Size = new System.Drawing.Size(14, 16);
-            this.DTAAspectRatioValue.TabIndex = 11;
-            this.DTAAspectRatioValue.Text = "0";
-            this.DTAAspectRatioValue.Click += new System.EventHandler(this.label5_Click);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(704, 62);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(136, 16);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Genetic Aspect Ratio:";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
-            // 
-            // GenericAspectRatio
-            // 
-            this.GenericAspectRatio.AutoSize = true;
-            this.GenericAspectRatio.Location = new System.Drawing.Point(857, 62);
-            this.GenericAspectRatio.Name = "GenericAspectRatio";
-            this.GenericAspectRatio.Size = new System.Drawing.Size(14, 16);
-            this.GenericAspectRatio.TabIndex = 13;
-            this.GenericAspectRatio.Text = "0";
+            this.fullMesh.Location = new System.Drawing.Point(60, 47);
+            this.fullMesh.Name = "fullMesh";
+            this.fullMesh.Size = new System.Drawing.Size(115, 44);
+            this.fullMesh.TabIndex = 14;
+            this.fullMesh.Text = "Full Mesh";
+            this.fullMesh.UseVisualStyleBackColor = true;
+            this.fullMesh.Click += new System.EventHandler(this.fullMesh_Click);
             // 
             // Display
             // 
@@ -325,6 +337,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label DTAAspectRatioValue;
         private System.Windows.Forms.Label GTAAspectRatioLbl;
+        private System.Windows.Forms.Button fullMesh;
     }
 }
 

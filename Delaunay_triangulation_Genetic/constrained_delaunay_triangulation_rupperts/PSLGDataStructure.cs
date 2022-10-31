@@ -35,7 +35,23 @@ namespace DelaunayGenericTriangulation
 
             if (is_create == true) // create the mesh
             {
-                DelaunayGenericAlgorithm.create_constrained_mesh(surf_index, inner_surf_index, ref allSurfaces, h, refine);
+                if (surf_index == allSurfaces.Count - 1) Utils.IsOuterSurface = true;
+                else Utils.IsOuterSurface = false;
+
+                if(Utils.IsFullMesh)
+                {
+                    for (surf_index = 0; surf_index < allSurfaces.Count; surf_index++)
+                    {
+                        DelaunayGenericAlgorithm.create_constrained_mesh(surf_index, inner_surf_index, ref allSurfaces, h, refine);
+                    }
+                }
+                else
+                {
+                    DelaunayGenericAlgorithm.create_constrained_mesh(surf_index, inner_surf_index, ref allSurfaces, h, refine);
+                }
+
+                Utils.IsFullMesh = false;
+
             }
             else // delete the mesh
             {
@@ -545,8 +561,7 @@ namespace DelaunayGenericTriangulation
             }
 
             public void paint_me(ref Graphics gr0, ref Pen face_pen, double triangleArea, double q1Area) // this function is used to paint the points
-            {
-               
+            {               
                 if (Display.StaticClass.isPaintMesh == true)
                 {
                     if (!Utils.RefineChecked) q1Area = 0;
@@ -557,7 +572,8 @@ namespace DelaunayGenericTriangulation
                     }
                     else
                     {
-                        face_pen.Color = Color.Red;
+                        if (Utils.IsOuterSurface) face_pen.Color = Color.Red;
+                        else face_pen.Color = Color.Black;
                     }
 
                     PointF[] curve_pts = { get_p1, get_p2, get_p3 };

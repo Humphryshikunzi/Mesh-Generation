@@ -284,6 +284,24 @@ namespace constrained_delaunay_triangulation
             set {  meanAspectRatioGenetic = value; }
         }
 
+      
+        private static bool  isFullMesh;
+
+        public static bool  IsFullMesh
+        {
+            get { return isFullMesh; }
+            set { isFullMesh = value; }
+        }
+
+        private static bool isOuterSurface;
+
+        public static bool IsOuterSurface
+        {
+            get { return isOuterSurface; }
+            set { isOuterSurface = value; }
+        }
+
+
         #endregion
     }
 }

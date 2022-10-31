@@ -13,7 +13,7 @@ namespace DelaunayGenericTriangulation
         public Display()
         {
             InitializeComponent();
-            triangleSize.Text = "3";
+            triangleSize.Text = "3"; 
         }
 
         private void button_randommap_Click(object sender, EventArgs e)
@@ -319,6 +319,31 @@ namespace DelaunayGenericTriangulation
         private void label6_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void fullMesh_Click(object sender, EventArgs e)
+        {
+            Utils.IsFullMesh = true;
+
+            // create the mesh
+            pslgData.SelectAndSetMesh(Cursor.Position.X - StaticClass.BoundingMidPt.X, Cursor.Position.Y - StaticClass.BoundingMidPt.Y, true, float.Parse(triangleSize.Text), RefineCheckBox.Checked);
+  
+            // if refined not, reset iters and genetic angles count to zero
+            if (!RefineCheckBox.Checked)
+            {
+                Utils.NoOfGeneticRefinedTriangles = 0;
+                Utils.NoOfIterations = 0;
+                Utils.MeanAspectRatioDTA = 0;
+                Utils.MeanAspectRatioGenetic = 0;
+            }
+
+            DtaTotal.Text = Convert.ToString(Utils.NOOFDTATriangles);
+            GeneticlblValue.Text = Convert.ToString(Utils.NoOfGeneticRefinedTriangles);
+            NoOfItersValue.Text = Convert.ToString(Utils.NoOfIterations);
+            DTAAspectRatioValue.Text = Convert.ToString(Utils.MeanAspectRatioDTA);
+            GenericAspectRatio.Text = Convert.ToString(Utils.MeanAspectRatioGenetic);
+
+            mtPic.Refresh();
         }
     }
 }
