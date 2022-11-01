@@ -35,27 +35,46 @@ namespace DelaunayGenericTriangulation
 
             if (is_create == true) // create the mesh
             {
-                if (surf_index == allSurfaces.Count - 1) Utils.IsOuterSurface = true;
-                else Utils.IsOuterSurface = false;
-
-                if(Utils.IsFullMesh)
-                {
-                    for (surf_index = 0; surf_index < allSurfaces.Count; surf_index++)
-                    {
-                        DelaunayGenericAlgorithm.create_constrained_mesh(surf_index, inner_surf_index, ref allSurfaces, h, refine);
-                    }
-                }
-                else
-                {
-                    DelaunayGenericAlgorithm.create_constrained_mesh(surf_index, inner_surf_index, ref allSurfaces, h, refine);
-                }
-
-                Utils.IsFullMesh = false;
-
+                DelaunayGenericAlgorithm.create_constrained_mesh(surf_index, inner_surf_index, ref allSurfaces, h, refine);
             }
             else // delete the mesh
             {
                 DelaunayGenericAlgorithm.delete_constrained_mesh(surf_index, inner_surf_index, ref allSurfaces);
+            }
+        }
+
+        public void SelectAndSetFullMesh(double x, double y, bool is_create, float h, bool refine)
+        {
+            // this is a call to set or delete the mesh
+            int surf_index = -1; //variable to store the index
+            foreach (SurfaceStore surf in allSurfaces)
+            {
+                surf_index = allSurfaces.FindIndex(obj => obj.surface_id == surf.surface_id); // add the index of the surface to the main index;
+
+                List<int> inner_surf_index = new List<int>(); // variable to store inner surface index
+                if (surf_index != -1) // if not equal to -1 then surface is found
+                {
+                    foreach (SurfaceStore inner_surf in allSurfaces[surf_index].inner_surfaces)
+                    {
+                        inner_surf_index.Add(allSurfaces.FindIndex(obj => obj.surface_id == inner_surf.surface_id)); // add the index of inner surfaces to the list
+                    }
+                }
+                else
+                {
+                    return; //exit the function if no surfaces are found
+                }
+
+                if (is_create == true) // create the mesh
+                {
+                    if (surf_index == allSurfaces.Count - 1) Utils.IsOuterSurface = true;
+                    else Utils.IsOuterSurface = false;
+                    DelaunayGenericAlgorithm.create_constrained_mesh(surf_index, inner_surf_index, ref allSurfaces, h, refine);
+                    Utils.IsFullMesh = false;
+                }
+                else // delete the mesh
+                {
+                    DelaunayGenericAlgorithm.delete_constrained_mesh(surf_index, inner_surf_index, ref allSurfaces);
+                }
             }
         }
 

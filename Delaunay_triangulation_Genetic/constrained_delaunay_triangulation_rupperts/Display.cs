@@ -326,7 +326,7 @@ namespace DelaunayGenericTriangulation
             Utils.IsFullMesh = true;
 
             // create the mesh
-            pslgData.SelectAndSetMesh(Cursor.Position.X - StaticClass.BoundingMidPt.X, Cursor.Position.Y - StaticClass.BoundingMidPt.Y, true, float.Parse(triangleSize.Text), RefineCheckBox.Checked);
+            pslgData.SelectAndSetFullMesh(Cursor.Position.X - StaticClass.BoundingMidPt.X, Cursor.Position.Y - StaticClass.BoundingMidPt.Y, true, float.Parse(triangleSize.Text), RefineCheckBox.Checked);
   
             // if refined not, reset iters and genetic angles count to zero
             if (!RefineCheckBox.Checked)
@@ -336,6 +336,27 @@ namespace DelaunayGenericTriangulation
                 Utils.MeanAspectRatioDTA = 0;
                 Utils.MeanAspectRatioGenetic = 0;
             }
+
+            DtaTotal.Text = Convert.ToString(Utils.NOOFDTATriangles);
+            GeneticlblValue.Text = Convert.ToString(Utils.NoOfGeneticRefinedTriangles);
+            NoOfItersValue.Text = Convert.ToString(Utils.NoOfIterations);
+            DTAAspectRatioValue.Text = Convert.ToString(Utils.MeanAspectRatioDTA);
+            GenericAspectRatio.Text = Convert.ToString(Utils.MeanAspectRatioGenetic);
+
+            mtPic.Refresh();
+        }
+
+        private void btnUnMesh_Click(object sender, EventArgs e)
+        {
+            Utils.IsFullMesh = false; 
+
+            // create the mesh
+            pslgData.SelectAndSetFullMesh(Cursor.Position.X - StaticClass.BoundingMidPt.X, Cursor.Position.Y - StaticClass.BoundingMidPt.Y, false, float.Parse(triangleSize.Text), false);
+
+            Utils.NoOfGeneticRefinedTriangles = 0;
+            Utils.NoOfIterations = 0;
+            Utils.MeanAspectRatioDTA = 0;
+            Utils.MeanAspectRatioGenetic = 0;
 
             DtaTotal.Text = Convert.ToString(Utils.NOOFDTATriangles);
             GeneticlblValue.Text = Convert.ToString(Utils.NoOfGeneticRefinedTriangles);

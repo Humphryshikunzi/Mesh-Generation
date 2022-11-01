@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.MainPic = new System.Windows.Forms.Panel();
+            this.fullMesh = new System.Windows.Forms.Button();
             this.GenericAspectRatio = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.DTAAspectRatioValue = new System.Windows.Forms.Label();
@@ -49,7 +50,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.MapFileName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.fullMesh = new System.Windows.Forms.Button();
+            this.btnUnMesh = new System.Windows.Forms.Button();
             this.MainPic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mtPic)).BeginInit();
             this.SuspendLayout();
@@ -61,6 +62,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MainPic.BackColor = System.Drawing.Color.White;
             this.MainPic.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.MainPic.Controls.Add(this.btnUnMesh);
             this.MainPic.Controls.Add(this.fullMesh);
             this.MainPic.Controls.Add(this.GenericAspectRatio);
             this.MainPic.Controls.Add(this.label6);
@@ -84,6 +86,16 @@
             this.MainPic.Paint += new System.Windows.Forms.PaintEventHandler(this.MainPic_Paint);
             this.MainPic.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MainPic_MouseClick);
             this.MainPic.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainPic_MouseMove);
+            // 
+            // fullMesh
+            // 
+            this.fullMesh.Location = new System.Drawing.Point(60, 47);
+            this.fullMesh.Name = "fullMesh";
+            this.fullMesh.Size = new System.Drawing.Size(115, 44);
+            this.fullMesh.TabIndex = 14;
+            this.fullMesh.Text = "Full Mesh";
+            this.fullMesh.UseVisualStyleBackColor = true;
+            this.fullMesh.Click += new System.EventHandler(this.fullMesh_Click);
             // 
             // GenericAspectRatio
             // 
@@ -279,15 +291,15 @@
             this.label2.Text = "Enter File Name";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
-            // fullMesh
+            // btnUnMesh
             // 
-            this.fullMesh.Location = new System.Drawing.Point(60, 47);
-            this.fullMesh.Name = "fullMesh";
-            this.fullMesh.Size = new System.Drawing.Size(115, 44);
-            this.fullMesh.TabIndex = 14;
-            this.fullMesh.Text = "Full Mesh";
-            this.fullMesh.UseVisualStyleBackColor = true;
-            this.fullMesh.Click += new System.EventHandler(this.fullMesh_Click);
+            this.btnUnMesh.Location = new System.Drawing.Point(226, 48);
+            this.btnUnMesh.Name = "btnUnMesh";
+            this.btnUnMesh.Size = new System.Drawing.Size(115, 44);
+            this.btnUnMesh.TabIndex = 15;
+            this.btnUnMesh.Text = "Full UnMesh";
+            this.btnUnMesh.UseVisualStyleBackColor = true;
+            this.btnUnMesh.Click += new System.EventHandler(this.btnUnMesh_Click);
             // 
             // Display
             // 
@@ -338,6 +350,7 @@
         private System.Windows.Forms.Label DTAAspectRatioValue;
         private System.Windows.Forms.Label GTAAspectRatioLbl;
         private System.Windows.Forms.Button fullMesh;
+        private System.Windows.Forms.Button btnUnMesh;
     }
 }
 
