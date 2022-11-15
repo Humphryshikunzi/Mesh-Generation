@@ -21,6 +21,7 @@ namespace DelaunayGenericTriangulation
         public int cHeight;
         public string seed;
         public int spacing = 18; // square size
+        public int customSpacing = 5;
         public int randomFillPercent = 48; // 0 to 100 more like 45 to 55
         public int smoothingIteration = 10; // 1 and above 
         public int[,] map;
@@ -685,8 +686,8 @@ namespace DelaunayGenericTriangulation
       
         public GenerateMap(float i_width, float i_height, string filePath)
         {
-            cWidth = (int)(Math.Floor((double)i_width) / spacing);
-            cHeight = (int)(Math.Floor((double)i_height) / spacing);          
+            cWidth = (int)(Math.Floor((double)i_width) / customSpacing);
+            cHeight = (int)(Math.Floor((double)i_height) / customSpacing);          
 
             map = new int[cWidth, cHeight]; // map grid
 
@@ -713,7 +714,7 @@ namespace DelaunayGenericTriangulation
                 smooth_map();
             }
 
-            theSquareGrid = new SquareGrid(map, spacing);
+            theSquareGrid = new SquareGrid(map, customSpacing);
             mapGenerated = true;
         }
 
