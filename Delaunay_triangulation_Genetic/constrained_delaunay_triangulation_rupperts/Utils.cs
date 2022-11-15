@@ -248,13 +248,12 @@ namespace constrained_delaunay_triangulation
         }
 
 
-
         private static int  noOfGeneticRefinedTriangles;
 
         public static int  NoOfGeneticRefinedTriangles
         {
             get { return  noOfGeneticRefinedTriangles; }
-            set {  noOfGeneticRefinedTriangles = Convert.ToInt32(value / GeneticAngleConstant) + 1; }
+            set {  noOfGeneticRefinedTriangles = Convert.ToInt32(value / GeneticAngleConstant) ; }
         }
 
 
@@ -300,7 +299,6 @@ namespace constrained_delaunay_triangulation
             get { return isOuterSurface; }
             set { isOuterSurface = value; }
         }
-
 
         #endregion
     }

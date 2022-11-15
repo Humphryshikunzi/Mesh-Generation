@@ -65,11 +65,8 @@ namespace DelaunayGenericTriangulation
                 }
 
                 if (is_create == true) // create the mesh
-                {
-                    if (surf_index == allSurfaces.Count - 1) Utils.IsOuterSurface = true;
-                    else Utils.IsOuterSurface = false;
-                    DelaunayGenericAlgorithm.create_constrained_mesh(surf_index, inner_surf_index, ref allSurfaces, h, refine);
-                    Utils.IsFullMesh = false;
+                { 
+                    DelaunayGenericAlgorithm.create_constrained_mesh(surf_index, inner_surf_index, ref allSurfaces, h, refine);                
                 }
                 else // delete the mesh
                 {
@@ -459,6 +456,15 @@ namespace DelaunayGenericTriangulation
             point2d _mid_pt;
             double shrink_factor = 0.6f;
 
+            private int  parentIndex;
+
+            public int  ParentIndex
+            {
+                get { return  parentIndex; }
+                set {  parentIndex = value; }
+            }
+
+
 
             public int face_id
             {
@@ -587,12 +593,12 @@ namespace DelaunayGenericTriangulation
                     
                     if (triangleArea <= q1Area)
                     {
-                        face_pen.Color = Color.Green;
+                        face_pen.Color = Color.Red;
                     }
                     else
                     {
-                        if (Utils.IsOuterSurface) face_pen.Color = Color.Red;
-                        else face_pen.Color = Color.Black;
+                        if (Utils.IsOuterSurface) face_pen.Color = Color.Black;
+                        else face_pen.Color = Color.Red;
                     }
 
                     PointF[] curve_pts = { get_p1, get_p2, get_p3 };
@@ -604,7 +610,6 @@ namespace DelaunayGenericTriangulation
                         SizeF str_size = gr0.MeasureString(my_string, new Font("Cambria", 6)); // Measure string size to position the dimension
 
                         gr0.DrawString(my_string, new Font("Cambria", 6), new Pen(Color.DeepPink, 2).Brush, this._mid_pt.get_point());
-
                     }
                 }                 
             }             

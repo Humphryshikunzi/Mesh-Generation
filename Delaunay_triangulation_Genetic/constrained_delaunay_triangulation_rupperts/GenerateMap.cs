@@ -682,6 +682,7 @@ namespace DelaunayGenericTriangulation
             theSquareGrid = new SquareGrid(map, spacing);
             mapGenerated = true;             
         }
+      
         public GenerateMap(float i_width, float i_height, string filePath)
         {
             cWidth = (int)(Math.Floor((double)i_width) / spacing);
@@ -734,7 +735,8 @@ namespace DelaunayGenericTriangulation
 
 
                             // save this values
-                            writer.Write(map[x, y] + ",");
+                            //writer.Write($"{x}_{y}" + ",");
+                            writer.Write(1 + ",");
                         }
                         else
                         {
@@ -743,7 +745,7 @@ namespace DelaunayGenericTriangulation
 
 
                             // save this values
-                            writer.Write(map[x, y] + ",");
+                            writer.Write(map[x,y] + ",");
                         }                  
                            
                     }

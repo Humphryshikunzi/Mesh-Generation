@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.MainPic = new System.Windows.Forms.Panel();
+            this.btnUnMesh = new System.Windows.Forms.Button();
             this.fullMesh = new System.Windows.Forms.Button();
             this.GenericAspectRatio = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -50,7 +51,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.MapFileName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnUnMesh = new System.Windows.Forms.Button();
             this.MainPic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mtPic)).BeginInit();
             this.SuspendLayout();
@@ -86,6 +86,16 @@
             this.MainPic.Paint += new System.Windows.Forms.PaintEventHandler(this.MainPic_Paint);
             this.MainPic.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MainPic_MouseClick);
             this.MainPic.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainPic_MouseMove);
+            // 
+            // btnUnMesh
+            // 
+            this.btnUnMesh.Location = new System.Drawing.Point(226, 48);
+            this.btnUnMesh.Name = "btnUnMesh";
+            this.btnUnMesh.Size = new System.Drawing.Size(115, 44);
+            this.btnUnMesh.TabIndex = 15;
+            this.btnUnMesh.Text = "Full UnMesh";
+            this.btnUnMesh.UseVisualStyleBackColor = true;
+            this.btnUnMesh.Click += new System.EventHandler(this.btnUnMesh_Click);
             // 
             // fullMesh
             // 
@@ -133,7 +143,7 @@
             this.GTAAspectRatioLbl.Name = "GTAAspectRatioLbl";
             this.GTAAspectRatioLbl.Size = new System.Drawing.Size(118, 16);
             this.GTAAspectRatioLbl.TabIndex = 10;
-            this.GTAAspectRatioLbl.Text = "GTA Aspect Ratio:";
+            this.GTAAspectRatioLbl.Text = "DTA Aspect Ratio:";
             // 
             // NoOfItersValue
             // 
@@ -290,16 +300,6 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "Enter File Name";
             this.label2.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // btnUnMesh
-            // 
-            this.btnUnMesh.Location = new System.Drawing.Point(226, 48);
-            this.btnUnMesh.Name = "btnUnMesh";
-            this.btnUnMesh.Size = new System.Drawing.Size(115, 44);
-            this.btnUnMesh.TabIndex = 15;
-            this.btnUnMesh.Text = "Full UnMesh";
-            this.btnUnMesh.UseVisualStyleBackColor = true;
-            this.btnUnMesh.Click += new System.EventHandler(this.btnUnMesh_Click);
             // 
             // Display
             // 

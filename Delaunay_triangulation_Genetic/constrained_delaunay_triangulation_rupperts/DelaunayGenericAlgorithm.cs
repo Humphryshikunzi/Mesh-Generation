@@ -191,6 +191,11 @@ namespace DelaunayGenericTriangulation
                     the_surface_data[inner_surface_indices[i]].encapsulating_seed_edges.AddRange(inner_edges[i]);
                 }
             }
+
+            // assign parentIndex to triangle
+
+            main_mesh.all_triangles.ForEach(triangle => triangle.ParentIndex = the_surface_index);
+
             // End
         }
 
@@ -1405,6 +1410,7 @@ namespace DelaunayGenericTriangulation
             public class triangle_store
             {
                 int _tri_id;
+                int _parentIndex;
                 point_store _pt1;
                 point_store _pt2;
                 point_store _pt3;
@@ -1416,6 +1422,13 @@ namespace DelaunayGenericTriangulation
                 double _circum_circle_radius;
                 double _shortest_edge;
                 public point_store[] shrunk_vertices { get; } = new point_store[3];
+
+
+                public int ParentIndex
+                {
+                    get { return this._parentIndex; }
+                    set { this._parentIndex = value; }
+                }
 
                 public int tri_id
                 {

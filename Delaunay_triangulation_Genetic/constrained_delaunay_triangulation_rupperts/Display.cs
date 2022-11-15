@@ -350,7 +350,7 @@ namespace DelaunayGenericTriangulation
         {
             Utils.IsFullMesh = false; 
 
-            // create the mesh
+            // delete the mesh
             pslgData.SelectAndSetFullMesh(Cursor.Position.X - StaticClass.BoundingMidPt.X, Cursor.Position.Y - StaticClass.BoundingMidPt.Y, false, float.Parse(triangleSize.Text), false);
 
             Utils.NoOfGeneticRefinedTriangles = 0;
