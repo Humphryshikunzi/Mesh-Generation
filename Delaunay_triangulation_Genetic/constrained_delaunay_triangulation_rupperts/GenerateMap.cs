@@ -21,7 +21,7 @@ namespace DelaunayGenericTriangulation
         public int cHeight;
         public string seed;
         public int spacing = 18; // square size
-        public int customSpacing = 5;
+        public int customSpacing = 6;
         public int randomFillPercent = 48; // 0 to 100 more like 45 to 55
         public int smoothingIteration = 10; // 1 and above 
         public int[,] map;

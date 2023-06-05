@@ -283,7 +283,33 @@ namespace constrained_delaunay_triangulation
             set {  meanAspectRatioGenetic = value; }
         }
 
-      
+        private static DateTime  startTime;
+
+        public static  DateTime  StartTime 
+        {
+            get { return startTime; }
+            set { startTime = value; }
+        }
+
+        private static DateTime  endTime;
+
+        public static DateTime  EndTime
+        {
+            get { return  endTime; }
+            set {  endTime = value; }
+        }
+
+        private static TimeSpan  duration;
+
+        public static TimeSpan  Duration
+        {
+            get { return  duration; }
+            set {  duration = value; }
+        }
+
+
+
+
         private static bool  isFullMesh;
 
         public static bool  IsFullMesh

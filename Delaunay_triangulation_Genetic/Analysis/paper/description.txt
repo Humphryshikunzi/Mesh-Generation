@@ -1,0 +1,101 @@
+
+######################################################################
+Domain 1
+
+// DTA
+count    69.000000
+mean      0.376291
+std       0.320189
+min       0.000035
+25%       0.070927
+50%       0.283007
+75%       0.658137
+max       0.997317
+Name: triangle_store.AspectRatio, dtype: float64
+
+// GA
+count    135.000000
+mean       0.539006
+std        0.349996
+min        0.000035
+25%        0.237553
+50%        0.655721
+75%        0.861787
+max        0.999940
+Name: triangle_store.AspectRatio, dtype: float64
+
+######################################################################
+ Domain 2 
+
+// DTA
+count    17.000000
+mean      0.233450
+std       0.261252
+min       0.000149
+25%       0.000315
+50%       0.268975
+75%       0.505510
+max       0.825605
+Name: triangle_store.AspectRatio, dtype: float64
+
+// GA
+count    59.000000
+mean      0.527721
+std       0.426705
+min       0.000148
+25%       0.000421
+50%       0.811128
+75%       0.886134
+max       0.985615
+Name: triangle_store.AspectRatio, dtype: float64
+
+##################################################################
+Domain 3
+
+// DTA
+count    17.000000
+mean      0.253060
+std       0.301903
+min       0.000284
+25%       0.000471
+50%       0.251800
+75%       0.351463
+max       0.826818
+Name: triangle_store.AspectRatio, dtype: float64
+
+// GA
+count    47.000000
+mean      0.556913
+std       0.426944
+min       0.000190
+25%       0.000798
+50%       0.826818
+75%       0.901481
+max       0.991610
+Name: triangle_store.AspectRatio, dtype: float64
+
+###################################################################
+
+Domain Outer
+// DTA
+count    333.000000
+mean       0.425189
+std        0.331923
+min        0.000008
+25%        0.104965
+50%        0.368090
+75%        0.748125
+max        0.997317
+Name: triangle_store.AspectRatio, dtype: float64
+
+// GA
+count    555.000000
+mean       0.698136
+std        0.340045
+min        0.000008
+25%        0.622198
+50%        0.831949
+75%        0.946093
+max        0.999999
+Name: triangle_store.AspectRatio, dtype: float64
+

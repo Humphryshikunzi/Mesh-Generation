@@ -1,0 +1,54 @@
+#############################################################
+inner domain
+
+ga
+count    403.000000
+mean       0.784265
+std        0.282672
+min        0.000049
+25%        0.780047
+50%        0.898226
+75%        0.970135
+max        0.999997
+Name: triangle_store.AspectRatio, dtype: float64
+
+dtacount    
+101.000000
+mean       0.243904
+std        0.245140
+min        0.000031
+25%        0.000215
+50%        0.238400
+75%        0.335637
+max        0.923073
+Name: triangle_store.AspectRatio, dtype: float64
+###############################################################
+outer domain
+
+ga
+count    407.000000
+mean       0.607596
+std        0.368041
+min        0.000066
+25%        0.265686
+50%        0.790321
+75%        0.919451
+max        0.999544
+Name: triangle_store.AspectRatio, dtype: float64
+
+dta
+count    277.000000
+mean       0.456816
+std        0.387977
+min        0.000031
+25%        0.034094
+50%        0.410070
+75%        0.878649
+max        0.980382
+Name: triangle_store.AspectRatio, dtype: float64
+
+
+dta_ga_inner
+[96, 27, 19, 14, 13, 4, 7, 13, 8, 6]
+[10, 13, 12, 15, 15, 22, 36, 39, 83, 117]
+

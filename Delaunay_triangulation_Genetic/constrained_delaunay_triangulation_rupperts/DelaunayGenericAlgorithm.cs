@@ -1,6 +1,7 @@
 ﻿using constrained_delaunay_triangulation;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace DelaunayGenericTriangulation
@@ -196,7 +197,35 @@ namespace DelaunayGenericTriangulation
 
             main_mesh.all_triangles.ForEach(triangle => triangle.ParentIndex = the_surface_index);
 
-            // End
+            // save thses values of triangle to file
+            using (StreamWriter writer = new StreamWriter($"Surface_{the_surface_index}.csv"))
+            {
+
+                // Define Column Names
+                writer.Write("Id, Ang1, Ang2, Ang3, Area, AR, IR, OR, PI, CCx, CCy, CR, E1id, E1Ix, E11y, E12x, E12y, E1LAngleId, E1RAngleId,  E2id, E2Ix, E21y, E22x, E12y, E2LAngleId, E2RAngleId, "); 
+                writer.Write("E3id, E3Ix, E31y, E32x, E32y, E3LAngleId, E3RAngleId, MidX, Midy, P1id, P1x, P1y, P2id, P2x, P2y, P3id, P3x, P3y");
+                writer.WriteLine();
+                main_mesh.all_triangles.ForEach(tri =>
+                {
+                    int e1leftTriId = tri.e1.left_triangle != null ? tri.e1.left_triangle.tri_id : -1;
+                    int e1lrightTriId = tri.e1.right_triangle != null ? tri.e1.right_triangle.tri_id : -1;
+                    int e2leftTriId = tri.e2.left_triangle != null ? tri.e2.left_triangle.tri_id : -1;
+                    int e2rightTriId = tri.e2.right_triangle != null ? tri.e2.right_triangle.tri_id : -1;
+                    int e3leftTriId = tri.e3.left_triangle != null ? tri.e3.left_triangle.tri_id : -1;
+                    int e3rightTriId = tri.e3.right_triangle != null ? tri.e3.right_triangle.tri_id : -1;
+
+                    writer.Write($"{tri.tri_id},{tri.Angles.Item1},{tri.Angles.Item2},{tri.Angles.Item3},{tri.Area},{tri.AspectRatio},{tri.InnerRadius},{tri.OuterRadius},{tri.ParentIndex},");
+                    writer.Write($"{tri.circum_center.x},{tri.circum_center.y},{tri.circum_radius},{tri.e1.edge_id},{tri.e1.start_pt.x},{tri.e1.start_pt.y}," +
+                        $"{tri.e1.end_pt.x},{tri.e1.end_pt.y},{e1leftTriId},{e1lrightTriId},");
+                    writer.Write($"{tri.e2.edge_id},{tri.e2.start_pt.x},{tri.e2.start_pt.y},{tri.e2.end_pt.x},{tri.e2.end_pt.y},{e2leftTriId}, {e2rightTriId},");
+                    writer.Write($"{tri.e3.edge_id},{tri.e3.start_pt.x},{tri.e3.start_pt.y},{tri.e3.end_pt.x},{tri.e3.end_pt.y},{e3leftTriId}, {e3rightTriId},");
+                    writer.Write($"{tri.mid_pt.x},{tri.mid_pt.y}, {tri.pt1.pt_id}, {tri.pt1.x}, {tri.pt1.y}, {tri.pt2.pt_id}, {tri.pt2.x}, {tri.pt2.y}");
+                    writer.Write($"{tri.pt3.pt_id}, {tri.pt3.x}, {tri.pt3.y}");
+                    writer.WriteLine();
+                });
+            }
+
+                // End
         }
 
         public static List<PSLGDataStructure.edge2d> set_surface_edges(PSLGDataStructure.SurfaceStore the_surface, ref bool seed_control)

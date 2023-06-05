@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.MainPic = new System.Windows.Forms.Panel();
+            this.TimeTakenValue = new System.Windows.Forms.Label();
+            this.timeTakenLbl = new System.Windows.Forms.Label();
             this.btnUnMesh = new System.Windows.Forms.Button();
             this.fullMesh = new System.Windows.Forms.Button();
             this.GenericAspectRatio = new System.Windows.Forms.Label();
@@ -62,6 +64,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MainPic.BackColor = System.Drawing.Color.White;
             this.MainPic.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.MainPic.Controls.Add(this.TimeTakenValue);
+            this.MainPic.Controls.Add(this.timeTakenLbl);
             this.MainPic.Controls.Add(this.btnUnMesh);
             this.MainPic.Controls.Add(this.fullMesh);
             this.MainPic.Controls.Add(this.GenericAspectRatio);
@@ -87,6 +91,25 @@
             this.MainPic.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MainPic_MouseClick);
             this.MainPic.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainPic_MouseMove);
             // 
+            // TimeTakenValue
+            // 
+            this.TimeTakenValue.AutoSize = true;
+            this.TimeTakenValue.Location = new System.Drawing.Point(955, 61);
+            this.TimeTakenValue.Name = "TimeTakenValue";
+            this.TimeTakenValue.Size = new System.Drawing.Size(14, 16);
+            this.TimeTakenValue.TabIndex = 17;
+            this.TimeTakenValue.Text = "0";
+            this.TimeTakenValue.Click += new System.EventHandler(this.TimeTakenValue_Click);
+            // 
+            // timeTakenLbl
+            // 
+            this.timeTakenLbl.AutoSize = true;
+            this.timeTakenLbl.Location = new System.Drawing.Point(851, 61);
+            this.timeTakenLbl.Name = "timeTakenLbl";
+            this.timeTakenLbl.Size = new System.Drawing.Size(98, 16);
+            this.timeTakenLbl.TabIndex = 16;
+            this.timeTakenLbl.Text = "Time Taken(s):";
+            // 
             // btnUnMesh
             // 
             this.btnUnMesh.Location = new System.Drawing.Point(226, 48);
@@ -110,7 +133,7 @@
             // GenericAspectRatio
             // 
             this.GenericAspectRatio.AutoSize = true;
-            this.GenericAspectRatio.Location = new System.Drawing.Point(857, 62);
+            this.GenericAspectRatio.Location = new System.Drawing.Point(728, 62);
             this.GenericAspectRatio.Name = "GenericAspectRatio";
             this.GenericAspectRatio.Size = new System.Drawing.Size(14, 16);
             this.GenericAspectRatio.TabIndex = 13;
@@ -119,7 +142,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(704, 62);
+            this.label6.Location = new System.Drawing.Point(591, 62);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(136, 16);
             this.label6.TabIndex = 12;
@@ -129,7 +152,7 @@
             // DTAAspectRatioValue
             // 
             this.DTAAspectRatioValue.AutoSize = true;
-            this.DTAAspectRatioValue.Location = new System.Drawing.Point(537, 61);
+            this.DTAAspectRatioValue.Location = new System.Drawing.Point(488, 61);
             this.DTAAspectRatioValue.Name = "DTAAspectRatioValue";
             this.DTAAspectRatioValue.Size = new System.Drawing.Size(14, 16);
             this.DTAAspectRatioValue.TabIndex = 11;
@@ -139,7 +162,7 @@
             // GTAAspectRatioLbl
             // 
             this.GTAAspectRatioLbl.AutoSize = true;
-            this.GTAAspectRatioLbl.Location = new System.Drawing.Point(398, 62);
+            this.GTAAspectRatioLbl.Location = new System.Drawing.Point(364, 62);
             this.GTAAspectRatioLbl.Name = "GTAAspectRatioLbl";
             this.GTAAspectRatioLbl.Size = new System.Drawing.Size(118, 16);
             this.GTAAspectRatioLbl.TabIndex = 10;
@@ -239,6 +262,7 @@
             this.mtPic.Size = new System.Drawing.Size(1061, 734);
             this.mtPic.TabIndex = 0;
             this.mtPic.TabStop = false;
+            this.mtPic.Click += new System.EventHandler(this.mtPic_Click);
             // 
             // button_randommap
             // 
@@ -351,6 +375,8 @@
         private System.Windows.Forms.Label GTAAspectRatioLbl;
         private System.Windows.Forms.Button fullMesh;
         private System.Windows.Forms.Button btnUnMesh;
+        private System.Windows.Forms.Label TimeTakenValue;
+        private System.Windows.Forms.Label timeTakenLbl;
     }
 }
 

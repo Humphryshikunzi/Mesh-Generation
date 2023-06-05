@@ -218,7 +218,7 @@ namespace DelaunayGenericTriangulation
 
         private void Form1_SizeChanged(object sender, EventArgs e)
         {
-            StaticClass.BoundingBox = new SizeF((float)(0.8 * MainPic.Width), (float)(0.8 * MainPic.Height));
+            StaticClass.BoundingBox = new SizeF((float)(0.8 * MainPic.Width), (float)(0.9 * MainPic.Height));
             StaticClass.BoundingMidPt = new PointF((float)(0.5 * MainPic.Width), (float)(0.5 * MainPic.Height));
             mtPic.Refresh();
         }
@@ -234,6 +234,8 @@ namespace DelaunayGenericTriangulation
 
         private void MainPic_MouseClick(object sender, MouseEventArgs e)
         {
+            Utils.StartTime = DateTime.Now; 
+
             // mouse click event to create or delete mesh
             if (string.IsNullOrEmpty(triangleSize.Text)) triangleSize.Text = "3";
             if (e.Button == MouseButtons.Left)
@@ -258,11 +260,15 @@ namespace DelaunayGenericTriangulation
                 Utils.MeanAspectRatioGenetic = 0;
             }
 
+            Utils.EndTime = DateTime.Now;
+
             DtaTotal.Text = Convert.ToString(Utils.NOOFDTATriangles);
             GeneticlblValue.Text = Convert.ToString(Utils.NoOfGeneticRefinedTriangles);
             NoOfItersValue.Text = Convert.ToString(Utils.NoOfIterations);
-            DTAAspectRatioValue.Text = Convert.ToString(Utils.MeanAspectRatioDTA);
-            GenericAspectRatio.Text = Convert.ToString(Utils.MeanAspectRatioGenetic);
+            DTAAspectRatioValue.Text = Convert.ToString(Math.Round(Utils.MeanAspectRatioDTA, 4));
+            GenericAspectRatio.Text = Convert.ToString(Math.Round(Utils.MeanAspectRatioGenetic, 4));
+            Utils.Duration = Utils.EndTime - Utils.StartTime;
+            TimeTakenValue.Text = Math.Round(Utils.Duration.TotalSeconds,4).ToString();
 
             mtPic.Refresh();
         }
@@ -365,6 +371,16 @@ namespace DelaunayGenericTriangulation
             GenericAspectRatio.Text = Convert.ToString(Utils.MeanAspectRatioGenetic);
 
             mtPic.Refresh();
+        }
+
+        private void TimeTakenValue_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mtPic_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

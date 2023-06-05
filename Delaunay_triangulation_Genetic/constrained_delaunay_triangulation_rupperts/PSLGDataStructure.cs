@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic; 
 using System.Drawing;
+using System.IO;
 
 namespace DelaunayGenericTriangulation
 {
@@ -114,6 +115,17 @@ namespace DelaunayGenericTriangulation
                 this._all_points = i_all_pts;
                 this._all_edges = i_all_edg;
                 this._all_triangles = i_all_fcs;
+
+                // save the vertices of triangle here 
+
+                using (StreamWriter writer = new StreamWriter("mapFileVertices.csv"))
+                {
+                    for (int i = 0; i < i_all_pts.Count; i++)
+                    {
+                        writer.Write(i_all_pts[i].id + "," + i_all_pts[i].x + "," + i_all_pts[i].y);
+                        writer.WriteLine();
+                    }
+                }
             }
 
             public void paint_me(ref Graphics gr0) // this function is used to paint the mesh
@@ -122,7 +134,7 @@ namespace DelaunayGenericTriangulation
                 List<double> triangleAreas = new List<double>();
                 double q1;
 
-                Pen temp_edge_pen = new Pen(Color.DarkOrange, 1);
+                Pen temp_edge_pen = new Pen(Color.Black, 1);
                 all_edges.ForEach(obj => obj.paint_me(ref gr1, ref temp_edge_pen)); // Paint the edges
 
                 Pen temp_node_pen = new Pen(Color.DarkRed, 2);
@@ -593,12 +605,12 @@ namespace DelaunayGenericTriangulation
                     
                     if (triangleArea <= q1Area)
                     {
-                        face_pen.Color = Color.Red;
+                        face_pen.Color = Color.White;
                     }
                     else
                     {
                         if (Utils.IsOuterSurface) face_pen.Color = Color.Black;
-                        else face_pen.Color = Color.Red;
+                        else face_pen.Color = Color.White;
                     }
 
                     PointF[] curve_pts = { get_p1, get_p2, get_p3 };
